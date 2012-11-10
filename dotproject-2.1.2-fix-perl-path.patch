@@ -1,0 +1,10 @@
+--- includes/gateway.pl	2010-11-18 10:18:34.000000000 +0100
++++ includes/gateway.pl.oden	2010-11-18 12:15:35.200136772 +0100
+@@ -1,6 +1,4 @@
+-#!c:\programme\perl\bin\perl.exe -w
+-# You may have to edit the above line to reflect your system
+-# E.g. the typical UNIX/Linux system will require #!/usr/bin/perl
++#!/usr/bin/perl
+ 
+ # $Id: gateway.pl 6038 2010-10-03 05:49:01Z ajdonnison $ #
+ 

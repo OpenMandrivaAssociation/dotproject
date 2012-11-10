@@ -1,0 +1,16 @@
+diff -Naur dotproject/lib/phpgacl/admin/gacl_admin.inc.php dotproject.oden/lib/phpgacl/admin/gacl_admin.inc.php
+--- dotproject/lib/phpgacl/admin/gacl_admin.inc.php	2005-02-17 01:17:08.000000000 +0100
++++ dotproject.oden/lib/phpgacl/admin/gacl_admin.inc.php	2006-04-26 11:30:43.000000000 +0200
+@@ -77,9 +77,9 @@
+ /*
+  * Configure the Smarty Class for the administration interface ONLY!
+  */
+-$smarty_dir = "$baseDir/lib/smarty"; //NO trailing slash!
+-$smarty_template_dir = "$smarty_dir/templates"; //NO trailing slash!
+-$smarty_compile_dir = "$smarty_dir/templates_c"; //NO trailing slash!
++$smarty_dir = "/usr/share/smarty"; //NO trailing slash!
++$smarty_template_dir = "$baseDir/files/cache/smarty_templates"; //NO trailing slash!
++$smarty_compile_dir = "$baseDir/files/cache/smarty_templates_c"; //NO trailing slash!
+ 
+ //Setup the Smarty Class.
+ require_once($smarty_dir.'/Smarty.class.php');

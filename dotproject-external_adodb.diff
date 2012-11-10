@@ -1,0 +1,102 @@
+diff -Naur dotproject-2.1.4/classes/permissions.class.php dotproject-2.1.4.oden/classes/permissions.class.php
+--- dotproject-2.1.4/classes/permissions.class.php	2010-11-18 10:18:33.000000000 +0100
++++ dotproject-2.1.4.oden/classes/permissions.class.php	2010-11-18 12:47:07.825136777 +0100
+@@ -22,7 +22,7 @@
+ 
+ //Set the ADODB directory
+ if (!(defined('ADODB_DIR'))) {
+-	define('ADODB_DIR', DP_BASE_DIR . '/lib/adodb');
++	define('ADODB_DIR', '/usr/share/php/adodb');
+ }
+ 
+ //Include the PHPGACL library
+diff -Naur dotproject-2.1.4/classes/query.class.php dotproject-2.1.4.oden/classes/query.class.php
+--- dotproject-2.1.4/classes/query.class.php	2010-11-18 10:18:33.000000000 +0100
++++ dotproject-2.1.4.oden/classes/query.class.php	2010-11-18 13:29:18.595074135 +0100
+@@ -23,7 +23,7 @@
+ 	die('This file should not be called directly.');
+ }
+ 
+-require_once DP_BASE_DIR."/lib/adodb/adodb.inc.php";
++require_once "/usr/share/php/adodb/adodb.inc.php";
+ 
+ define('QUERY_STYLE_ASSOC', ADODB_FETCH_ASSOC);
+ define('QUERY_STYLE_NUM' , ADODB_FETCH_NUM);
+@@ -750,7 +750,7 @@
+ 	function execXML($xml, $mode = 'REPLACE') {
+ 		global $db, $AppUI;
+ 
+-		include_once DP_BASE_DIR.'/lib/adodb/adodb-xmlschema.inc.php';
++		include_once '/usr/share/php/adodb/adodb-xmlschema.inc.php';
+ 		$schema = new adoSchema($db);
+ 		$schema->setUpgradeMode($mode);
+ 		if (isset($this->_table_prefix) && $this->_table_prefix) {
+diff -Naur dotproject-2.1.4/includes/db_adodb.php dotproject-2.1.4.oden/includes/db_adodb.php
+--- dotproject-2.1.4/includes/db_adodb.php	2010-11-18 10:18:34.000000000 +0100
++++ dotproject-2.1.4.oden/includes/db_adodb.php	2010-11-18 12:48:49.688948908 +0100
+@@ -13,7 +13,7 @@
+ 	die('You should not access this file directly.');
+ }
+ 
+-require_once(DP_BASE_DIR.'/lib/adodb/adodb.inc.php');
++require_once('/usr/share/php/adodb/adodb.inc.php');
+ 
+ $db = NewADOConnection(dPgetConfig('dbtype'));
+ $GLOBALS['ADODB_OUTP'] = 'db_dprint';
+diff -Naur dotproject-2.1.4/install/check_upgrade.php dotproject-2.1.4.oden/install/check_upgrade.php
+--- dotproject-2.1.4/install/check_upgrade.php	2010-11-18 10:18:34.000000000 +0100
++++ dotproject-2.1.4.oden/install/check_upgrade.php	2010-11-18 12:49:04.336167633 +0100
+@@ -42,7 +42,7 @@
+ 
+ require_once DP_BASE_DIR . '/includes/dP_compat.php';
+ require_once 'install.inc.php';
+-require_once DP_BASE_DIR.'/lib/adodb/adodb.inc.php';
++require_once '/usr/share/php/adodb/adodb.inc.php';
+ 
+ function dPcheckExistingDB($conf) {
+ 	global $AppUI, $ADODB_FETCH_MODE;
+diff -Naur dotproject-2.1.4/install/do_install_db.php dotproject-2.1.4.oden/install/do_install_db.php
+--- dotproject-2.1.4/install/do_install_db.php	2010-11-18 10:18:34.000000000 +0100
++++ dotproject-2.1.4.oden/install/do_install_db.php	2010-11-18 13:29:03.050073905 +0100
+@@ -57,7 +57,7 @@
+ global $lastDBUpdate;
+ $lastDBUpdate = '';
+ 
+-require_once(DP_BASE_DIR.'/lib/adodb/adodb.inc.php');
++require_once('/usr/share/php/adodb/adodb.inc.php');
+ @include_once DP_BASE_DIR.'/includes/version.php';
+ 
+ $db = NewADOConnection($dbtype);
+@@ -79,7 +79,7 @@
+ if ($dobackup) {
+ 
+  if ($dbc) {
+-  require_once(DP_BASE_DIR.'/lib/adodb/adodb-xmlschema.inc.php');
++  require_once('/usr/share/php/adodb/adodb-xmlschema.inc.php');
+ 
+   $schema = new adoSchema($db);
+ 
+diff -Naur dotproject-2.1.4/modules/backup/do_backup.php dotproject-2.1.4.oden/modules/backup/do_backup.php
+--- dotproject-2.1.4/modules/backup/do_backup.php	2005-04-08 03:24:42.000000000 +0200
++++ dotproject-2.1.4.oden/modules/backup/do_backup.php	2010-11-18 13:29:50.300948839 +0100
+@@ -26,7 +26,7 @@
+   $AppUI->redirect('m=public&a=access_denied');
+ }
+ 
+-require_once "$baseDir/lib/adodb/adodb-xmlschema.inc.php";
++require_once "/usr/share/php/adodb/adodb-xmlschema.inc.php";
+ 
+ 
+ if ($output_format == 'xml') {
+diff -Naur dotproject-2.1.4/modules/backup/do_restore.php dotproject-2.1.4.oden/modules/backup/do_restore.php
+--- dotproject-2.1.4/modules/backup/do_restore.php	2005-04-08 03:24:42.000000000 +0200
++++ dotproject-2.1.4.oden/modules/backup/do_restore.php	2010-11-18 13:29:35.922948668 +0100
+@@ -17,7 +17,7 @@
+ $upload_tmp_file = $_FILES['xmlfile']['tmp_name'];
+ $continue = dPgetParam($_POST, 'continue', false);
+ 
+-require_once $baseDir . '/lib/adodb/adodb-xmlschema.inc.php';
++require_once '/usr/share/php/adodb/adodb-xmlschema.inc.php';
+ $schema = new adoSchema($GLOBALS['db']);
+ $schema->setUpgradeMethod('REPLACE');
+ $schema->ContinueOnError(true);

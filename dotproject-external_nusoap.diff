@@ -1,0 +1,22 @@
+diff -Naur dotproject/lib/phpgacl/soap/clients/php_client.php dotproject.oden/lib/phpgacl/soap/clients/php_client.php
+--- dotproject/lib/phpgacl/soap/clients/php_client.php	2004-10-15 03:05:27.000000000 +0200
++++ dotproject.oden/lib/phpgacl/soap/clients/php_client.php	2006-04-26 11:53:09.000000000 +0200
+@@ -1,5 +1,5 @@
+ <?php
+-require_once('../nusoap.php');
++require_once('nusoap/nusoap.php');
+ 
+ /*
+  * EDIT THE BELOW URL TO MATCH YOUR SERVER.
+diff -Naur dotproject/lib/phpgacl/soap/server.php dotproject.oden/lib/phpgacl/soap/server.php
+--- dotproject/lib/phpgacl/soap/server.php	2004-10-15 03:05:27.000000000 +0200
++++ dotproject.oden/lib/phpgacl/soap/server.php	2006-04-26 11:52:58.000000000 +0200
+@@ -12,7 +12,7 @@
+  *  into this file, and only include the ../gacl.class.php file. 
+  */
+ require_once('../admin/gacl_admin.inc.php');
+-require_once('nusoap.php');
++require_once('nusoap/nusoap.php');
+ 
+ $s = new soap_server;
+ 
