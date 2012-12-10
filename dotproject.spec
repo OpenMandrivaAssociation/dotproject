@@ -1,11 +1,9 @@
-%define _requires_exceptions pear(/usr/share/php5-jpgraph\\|pear(/usr/share/php-adodb
-
 %define svn_snap r6063
 
 Summary:	Web Based Project Management Tool
 Name:		dotproject
 Version:	2.1.4
-Release:	%mkrel 0.0.%{svn_snap}.1
+Release:	0.0.%{svn_snap}.3
 License:	GPL
 Group:		System/Servers
 URL:		http://sourceforge.net/projects/dotproject/
@@ -45,11 +43,10 @@ Requires:	php-ldap
 Requires:	php-mysql
 Requires:	php-pear-Date_Holidays
 Requires:	php-smarty
-Requires:	php-sqlite
+Requires:	php-sqlite3
 BuildArch:	noarch
 BuildRequires:	apache-devel >= 2.0.54
 BuildRequires:	unzip
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 DotProject is a Web-based project management framework that includes modules
@@ -60,8 +57,7 @@ design that allows extra modules (such as time sheets and inventory) to be
 added in easily.
 
 %prep
-
-%setup -q -n %{name}-%{version}
+%setup -q
 
 # extra modules
 pushd modules
@@ -145,8 +141,6 @@ find . -type f|xargs file|grep 'text'|cut -d: -f1|xargs perl -p -i -e 's/\r//'
 %build
 
 %install
-rm -rf %{buildroot}
-
 export DONT_RELINK=1
 
 install -d %{buildroot}%{_sysconfdir}/%{name}
@@ -211,29 +205,9 @@ install -m0644 dotproject-apache.conf %{buildroot}%{_sysconfdir}/httpd/conf/weba
 # cleanup
 find %{buildroot}%{_datadir}/%{name} -type f -name "\.htaccess" | xargs rm -f
 
-%if %mdkversion < 201010
-%post
-%_post_webapp
-%endif
-
-%if %mdkversion < 201010
-%postun
-%_postun_webapp
-%endif
-
-%clean
-rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc ChangeLog
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %attr(0640,apache,apache) %config(noreplace) %{_sysconfdir}/%{name}/config.php
 %{_datadir}/%{name}
-%attr(0640,apache,apache) %{_datadir}/%{name}/includes/config.php
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/files
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/files/cache/phpgacl
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/files/cache/smarty_templates
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/files/cache/smarty_templates_c
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/files/temp
-%attr(0755,apache,apache) %dir %{_datadir}/%{name}/locales/en
