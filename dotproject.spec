@@ -35,6 +35,7 @@ Patch3:		dotproject-external_adodb.diff
 Requires(post): rpm-helper apache-mod_php
 Requires(preun): rpm-helper apache-mod_php
 Requires:	apache-mod_php
+Requires:	apache-mod_socache_shmcb
 Requires:	nusoap
 Requires:	php-adodb
 Requires:	php-gd
