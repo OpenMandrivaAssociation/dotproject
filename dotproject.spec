@@ -166,8 +166,7 @@ cat > dotproject-apache.conf << EOF
 Alias /%{name} "%{_datadir}/%{name}"
 
 <Directory "%{_datadir}/%{name}">
-    Order Allow,Deny
-    Allow from All
+    Require all granted
     php_admin_value memory_limit    64M
     php_admin_value post_max_size   17M
     php_admin_value upload_max_filesize 32M
@@ -176,26 +175,22 @@ Alias /%{name} "%{_datadir}/%{name}"
 
 <Directory "%{_datadir}/%{name}/files">
     Options -All
-    Deny from All
+    Require all denied
 </Directory>
 
 <Directory "%{_datadir}/%{name}/files/temp">
     Options -All
-    Order Allow,Deny
-    Allow from All
+    Require all granted
 </Directory>
 
 <Directory "%{_datadir}/%{name}/includes">
     <Files "gateway.pl">
-	Order Deny,Allow
-	Deny from All
+	Require all denied
     </Files>
 </Directory>
 
 <Directory "%{_datadir}/%{name}/install">
-    Order Deny,Allow
-    Deny from All
-    Allow from 127.0.0.1
+    Require host 127.0.0.1
     ErrorDocument 403 "Access denied per %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf"
 </Directory>
 EOF
