@@ -3,7 +3,7 @@
 Summary:	Web Based Project Management Tool
 Name:		dotproject
 Version:	2.1.4
-Release:	0.0.%{svn_snap}.3
+Release:	0.0.%{svn_snap}.4
 License:	GPL
 Group:		System/Servers
 URL:		http://sourceforge.net/projects/dotproject/
