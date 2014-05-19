@@ -1,9 +1,10 @@
 %define svn_snap r6063
+%define __noautoreq /usr/bin/php
 
 Summary:	Web Based Project Management Tool
 Name:		dotproject
 Version:	2.1.4
-Release:	0.0.%{svn_snap}.4
+Release:	0.0.%{svn_snap}.5
 License:	GPL
 Group:		System/Servers
 URL:		http://sourceforge.net/projects/dotproject/
