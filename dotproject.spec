@@ -7,7 +7,7 @@ Version:	2.1.4
 Release:	0.0.%{svn_snap}.5
 License:	GPL
 Group:		System/Servers
-URL:		http://sourceforge.net/projects/dotproject/
+URL:		https://sourceforge.net/projects/dotproject/
 Source0:	http://prdownloads.sourceforge.net/dotproject/%{name}-%{version}-%{svn_snap}.tar.xz
 # S10 - S30 was taken http://sourceforge.net/projects/dotmods/
 Source10:	http://mesh.dl.sourceforge.net/project/dotmods/Annotations/0.3.0/annotations_1235-29072009.zip
